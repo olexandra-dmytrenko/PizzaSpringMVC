@@ -8,19 +8,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.rd.deliveryservice.domain.Pizza;
 
+import java.util.List;
+
 /**
  *
  * @author andrii
  */
 @Repository
 public class JPAPizzaRepository implements PizzaRepository {
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     @Transactional(readOnly = true)
-    public Pizza find(Integer id) {       
+    public Pizza find(Integer id) {
         return em.find(Pizza.class, id);
     }
 
@@ -34,5 +36,10 @@ public class JPAPizzaRepository implements PizzaRepository {
         }
         return pizza;
     }
-    
+
+    @Override
+    public List<Pizza> findAll() {
+        return em.createQuery("from pizzas", Pizza.class).getResultList();
+    }
+
 }

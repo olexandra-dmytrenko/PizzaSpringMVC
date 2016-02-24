@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.rd.deliveryservice.domain.Pizza;
 import ua.rd.deliveryservice.repository.PizzaRepository;
 
+import java.util.List;
+
 /**
  *
  * @author andrii
@@ -31,6 +33,11 @@ public class SimplePizzaService implements PizzaService {
     @Transactional()
     public Pizza save(Pizza pizza) {
         return pizzaRepository.save(pizza);
+    }
+
+    @Override
+    public List<Pizza> findAll() {
+        return pizzaRepository.findAll();
     }
 
 }

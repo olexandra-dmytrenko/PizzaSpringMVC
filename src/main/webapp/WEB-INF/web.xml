@@ -2,7 +2,8 @@
          xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-   http://java.sun.com/xml/ns/j2ee/web-app.xsd">
+   http://java.sun.com/xml/ns/j2ee/web-app.xsd
+ ">
 
     <display-name>Spring MVC Application</display-name>
 
@@ -19,6 +20,25 @@
 
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <context-param>
+        <param-name>
+            contextConfigLocation
+        </param-name>
+        <param-value>
+            classpath:/repositoryContext.xml
+            classpath:/appContext.xml
+        </param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>prod</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
